@@ -7,10 +7,18 @@ async function fetchTasks() {
     taskList.innerHTML = '';
 
     tasks.forEach(task => {
+        const priority = task.priority || 'Medium';
         const li = document.createElement('li');
         li.innerHTML = `
-            <span>${task.title}</span>
-            <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+            <span class="task-details">
+                <span class="task-title">${task.title}</span>
+                <span class="priority priority-${priority.toLowerCase()}">
+                    Priority: ${priority}
+                </span>
+            </span>
+            <button class="delete-btn" onclick="deleteTask(${task.id})">
+                Delete
+            </button>
         `;
         taskList.appendChild(li);
     });
@@ -18,17 +26,20 @@ async function fetchTasks() {
 
 async function addTask() {
     const titleInput = document.getElementById('task-title');
+    const priorityInput = document.getElementById('task-priority');
     const title = titleInput.value.trim();
+    const priority = priorityInput.value || 'Medium';
 
     if (!title) return;
 
     await fetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title })
+        body: JSON.stringify({ title, priority })
     });
 
     titleInput.value = '';
+    priorityInput.value = 'Medium';
     fetchTasks();
 }
 
