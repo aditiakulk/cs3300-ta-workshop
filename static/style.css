@@ -1,5 +1,6 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
     display: flex;
@@ -26,13 +27,22 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-input[type="text"] {
+.task-input label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input[type="text"],
+select {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    min-width: 0;
 }
 
 button {
@@ -58,12 +68,36 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
 
 li:last-child {
     border-bottom: none;
+}
+
+.task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.priority {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-low {
+    color: #4169a1;
+}
+
+.priority-medium {
+    color: #666;
+}
+
+.priority-high {
+    color: #a33a2b;
 }
 
 .delete-btn {
